@@ -1861,6 +1861,10 @@
 		text-align: right;
 	}
 
+	.rc-anchor {
+		visibility: hidden;
+	}
+
 /* Box */
 
 	.box {
