@@ -9,13 +9,13 @@
 		<link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<script src="https://www.google.com/recaptcha/api.js"></script>
 		<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 		<script type="text/javascript">
 			 (function(){
 					emailjs.init("user_eeMbzK3XWGnHQ21K8wCjz");
 			 })();
 		</script>
+		<script src="https://www.google.com/recaptcha/api.js"></script>
 		<script type="text/javascript">
 		function sendMessage(event) {
 			event.preventDefault();
@@ -161,8 +161,7 @@
 										<ul class="actions">
 											<li>
 												<a href=""
-													class="button submit"
-													class="g-recaptcha"
+													class="button submit g-recaptcha"
 													data-sitekey="6LcLZSYUAAAAADJqLnlVUxEpKBCugYvq0_97fbjQ"
 													data-callback="sendMessage">>
 													Send Message
