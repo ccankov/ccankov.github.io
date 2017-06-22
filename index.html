@@ -32,7 +32,7 @@
 			var serviceId = "gmail";
 			var templateId = "personalsiteform";
 			var formResponse = $('#form-response');
-			
+
 			emailjs.sendForm(serviceId,templateId,"contact-form")
 				.then(function(){
 					formResponse.removeClass("error-text");
@@ -175,14 +175,15 @@
 										</div>
 										<ul class="actions">
 											<li>
-												<a style="border-bottom-width: 0">
-													<button
-														class="button submit g-recaptcha"
-														data-sitekey="6LcLZSYUAAAAADJqLnlVUxEpKBCugYvq0_97fbjQ"
-														data-callback="onSubmit"
-														onclick="validate()">
+												<div id='recaptcha' class="g-recaptcha"
+								          data-sitekey="6LcLZSYUAAAAADJqLnlVUxEpKBCugYvq0_97fbjQ"
+								          data-callback="onSubmit"
+								          data-size="invisible">
+												</div>
+												<a style="border-bottom-width: 0"
+													class="button submit"
+													onclick="validate()">
 														Send Message
-													</button>
 												</a>
 											</li>
 										</ul>
