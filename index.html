@@ -17,31 +17,34 @@
 		</script>
 		<script src="https://www.google.com/recaptcha/api.js"></script>
 		<script type="text/javascript">
-		function sendMessage() {
-			var serviceId = "gmail";
-			var templateId = "personalsiteform";
-
-			var email = $('#email')[0].value;
+		function validate() {
 			var formResponse = $('#form-response');
-
+			var email = $('#email')[0].value;
 			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-				emailjs.sendForm(serviceId,templateId,"contact-form")
-					.then(function(){
-						formResponse.removeClass("error-text");
-						formResponse[0].innerHTML = "Message sent! Thank you for reaching out, I'm looking forward to getting back to you.";
-						$('#email')[0].value = '';
-						$('#name')[0].value = '';
-						$('#message')[0].value = '';
-					}, function(err) {
-						formResponse.addClass("error-text");
-						formResponse[0].innerHTML = "Send email failed! Response: " + JSON.stringify(err);
-					});
+				grecaptcha.execute();
 			} else {
 				formResponse.addClass("error-text");
 				formResponse[0].innerHTML = "Please enter a valid email address.";
 			}
-			return false;
-		};
+		}
+
+		function onSubmit() {
+			var serviceId = "gmail";
+			var templateId = "personalsiteform";
+			var formResponse = $('#form-response');
+			
+			emailjs.sendForm(serviceId,templateId,"contact-form")
+				.then(function(){
+					formResponse.removeClass("error-text");
+					formResponse[0].innerHTML = "Message sent! Thank you for reaching out, I'm looking forward to getting back to you.";
+					$('#email')[0].value = '';
+					$('#name')[0].value = '';
+					$('#message')[0].value = '';
+				}, function(err) {
+					formResponse.addClass("error-text");
+					formResponse[0].innerHTML = "Send email failed! Response: " + JSON.stringify(err);
+			});
+		}
 		</script>
 	</head>
 	<body>
@@ -176,7 +179,8 @@
 													<button
 														class="button submit g-recaptcha"
 														data-sitekey="6LcLZSYUAAAAADJqLnlVUxEpKBCugYvq0_97fbjQ"
-														data-callback="sendMessage">
+														data-callback="onSubmit"
+														onclick="validate()">
 														Send Message
 													</button>
 												</a>
