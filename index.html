@@ -28,10 +28,10 @@
 				emailjs.sendForm(serviceId,templateId,"contact-form")
 					.then(function(){
 						formResponse.removeClass("error-text");
-						formResponse.innerHTML = "Message sent! Thank you for reaching out, I'm looking forward to getting back to you.";
-						$('#email')[0].innerHTML = '';
-						$('#name')[0].innerHTML = '';
-						$('#message')[0].innerHTML = '';
+						formResponse[0].innerHTML = "Message sent! Thank you for reaching out, I'm looking forward to getting back to you.";
+						$('#email')[0].value = '';
+						$('#name')[0].value = '';
+						$('#message')[0].value = '';
 					}, function(err) {
 						formResponse.addClass("error-text");
 						formResponse[0].innerHTML = "Send email failed! Response: " + JSON.stringify(err);
