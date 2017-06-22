@@ -36,7 +36,7 @@
 			emailjs.sendForm(serviceId,templateId,"contact-form")
 				.then(function(){
 					formResponse.removeClass("error-text");
-					formResponse[0].innerHTML = "Message sent! Thank you for reaching out, I'm looking forward to getting back to you.";
+					formResponse[0].innerHTML = "Message sent! Thank you for reaching out, I will get back to you soon.";
 					$('#email')[0].value = '';
 					$('#name')[0].value = '';
 					$('#message')[0].value = '';
