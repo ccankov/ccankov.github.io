@@ -18,17 +18,22 @@
 		<script src="https://www.google.com/recaptcha/api.js"></script>
 		<script type="text/javascript">
 		function sendMessage() {
-			var service_id = "gmail";
-			var template_id = "personalsiteform";
+			var serviceId = "gmail";
+			var templateId = "personalsiteform";
 
-			var email = getElementById('email').value;
+			var email = $('#email').value;
+			var formResponse = $('#form-response')
 
-			emailjs.sendForm(service_id,template_id,"contact_form")
-				.then(function(){
-					alert("Sent!");
-				}, function(err) {
-					 alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
-				});
+			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+				emailjs.sendForm(serviceId,templateId,"contact-form")
+					.then(function(){
+						alert("Sent!");
+					}, function(err) {
+						 alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+					});
+			} else {
+				formResponse.value = "Please enter a valid email address so that I can follow up with you."
+			}
 			return false;
 		};
 		</script>
@@ -143,9 +148,10 @@
 					<section id="three" class="wrapper style1 fade-up">
 						<div class="inner">
 							<h2>Contact</h2>
+							<p id="form-response"></p>
 							<div class="split style1">
 								<section>
-									<form id="contact_form">
+									<form id="contact-form">
 										<div class="field half first">
 											<label for="name">Name</label>
 											<input type="text" name="name" id="name" />
@@ -211,7 +217,7 @@
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 			<script type="text/javascript">
-			var myform = $("form#contact_form");
+			var myform = $("form#contact-form");
 			myform.submit(function(event){
 				event.preventDefault();
 			});
