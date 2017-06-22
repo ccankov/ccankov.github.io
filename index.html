@@ -21,6 +21,8 @@
 			var service_id = "gmail";
 			var template_id = "personalsiteform";
 
+			var email = getElementById('email').value;
+
 			emailjs.sendForm(service_id,template_id,"contact_form")
 				.then(function(){
 					alert("Sent!");
@@ -150,7 +152,7 @@
 										</div>
 										<div class="field half">
 											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
+											<input type="email" name="email" id="email" />
 										</div>
 										<div class="field">
 											<label for="message">Message</label>
