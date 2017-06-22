@@ -3929,3 +3929,8 @@
 			}
 
 		}
+
+		.error-text {
+			color: #de3600;
+			font-weight: bold;
+		}

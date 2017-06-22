@@ -21,18 +21,24 @@
 			var serviceId = "gmail";
 			var templateId = "personalsiteform";
 
-			var email = $('#email').value;
-			var formResponse = $('#form-response')
+			var email = $('#email')[0].value;
+			var formResponse = $('#form-response');
 
 			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
 				emailjs.sendForm(serviceId,templateId,"contact-form")
 					.then(function(){
-						alert("Sent!");
+						formResponse.removeClass("error-text");
+						formResponse.innerHTML = "Message sent! Thank you for reaching out, I'm looking forward to getting back to you.";
+						$('#email')[0].innerHTML = '';
+						$('#name')[0].innerHTML = '';
+						$('#message')[0].innerHTML = '';
 					}, function(err) {
-						 alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+						formResponse.addClass("error-text");
+						formResponse[0].innerHTML = "Send email failed! Response: " + JSON.stringify(err);
 					});
 			} else {
-				formResponse.value = "Please enter a valid email address so that I can follow up with you."
+				formResponse.addClass("error-text");
+				formResponse[0].innerHTML = "Please enter a valid email address.";
 			}
 			return false;
 		};
@@ -170,7 +176,8 @@
 													<button
 														class="button submit g-recaptcha"
 														data-sitekey="6LcLZSYUAAAAADJqLnlVUxEpKBCugYvq0_97fbjQ"
-														data-callback="sendMessage">
+														data-callback="sendMessage"
+														onclick="sendMessage()">
 														Send Message
 													</button>
 												</a>
